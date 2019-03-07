@@ -16,4 +16,11 @@ public class Door {
     public void setOpen(boolean open) {
         isOpen = open;
     }
+    public void printOpenedDoor(String objectName) {
+        System.out.println("Door " + getId() + " in room " + objectName + " was opened.");
+    }
+
+    public void printClosedDoor(String objectName) {
+        System.out.println("Door " + getId() + " in room " + objectName + " was closed.");
+    }
 }

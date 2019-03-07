@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class GsonSmartHomeLoader {
+public class GsonSmartHomeLoader implements LoaderSmartHome{
     @Override
     public SmartHome loadSmartHome() throws IOException {
         // считываем состояние дома из файла

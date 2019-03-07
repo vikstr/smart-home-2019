@@ -3,17 +3,19 @@ package ru.sbt.mipt.oop;
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_OFF;
 import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 
-public class LightEvent implements EventProcessor {
+public class LightsEvent implements EventProcessor {
+    @Override
     public void processEvent(SmartHome smartHome, SensorEvent event) {
-        if (!isLightEvent(event)) return;
+        if (!(event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF)) return;
         for (Room room : smartHome.getRooms()) {
             Light light = room.getLightById(event.getObjectId());
             if (event.getType() == LIGHT_ON) {
                 light.setOn(true);
-                System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned on.");
+                light.printTurnOnLight(room.getName());
             } else {
                 light.setOn(false);
-                System.out.println("Light " + light.getId() + " in room " + room.getName() + " was turned off.");
+                light.printTurnOffLight(room.getName());
             }
         }
     }
+}
