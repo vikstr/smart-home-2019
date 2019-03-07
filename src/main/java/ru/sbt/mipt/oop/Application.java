@@ -17,9 +17,9 @@ public class Application {
         LoaderSmartHome initsmarthome = new GsonSmartHomeLoader();
 
         SmartHome smarthome = initsmarthome.loadSmartHome();
-
         startEvents(smarthome);
     }
+
     private static void startEvents(SmartHome smartHome) {
         SensorEvent sensorEvent = CreateRandomEvent.getNextSensorEvent();
         Collection<EventProcessor> eventProcessorCollection = createEventProcessors();
