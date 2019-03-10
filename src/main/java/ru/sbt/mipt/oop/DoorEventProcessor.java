@@ -3,9 +3,9 @@ package ru.sbt.mipt.oop;
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_OPEN;
 
-public class DoorEvent implements EventProcessor {
+public class DoorEventProcessor implements EventProcessor {
     @Override
-    public void processEvent(SmartHome smartHome, SensorEvent event) {
+    public void processEvent(SmartHome smartHome, SensorEvent event){
         if (!(event.getType() == DOOR_OPEN || event.getType() == DOOR_CLOSED)) return;
         // событие от двери
         for (Room room : smartHome.getRooms()) {

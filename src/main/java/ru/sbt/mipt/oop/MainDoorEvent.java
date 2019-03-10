@@ -1,10 +1,12 @@
 package ru.sbt.mipt.oop;
 
+import java.io.IOException;
+
 import static ru.sbt.mipt.oop.SensorEventType.DOOR_CLOSED;
 
 public class MainDoorEvent implements EventProcessor {
     @Override
-    public void processEvent(SmartHome smartHome, SensorEvent event) {
+    public void processEvent(SmartHome smartHome, SensorEvent event) throws IOException {
         if (event.getType() != DOOR_CLOSED) return;
         // событие от двери
         for (Room room : smartHome.getRooms()) {

@@ -14,27 +14,28 @@ public class Application {
 
     public static void main(String... args) throws IOException {
 
-        LoaderSmartHome initsmarthome = new GsonSmartHomeLoader();
+        LoaderSmartHome initSmartHome = new GsonSmartHomeLoader();
 
-        SmartHome smarthome = initsmarthome.loadSmartHome();
+        SmartHome smarthome = initSmartHome.loadSmartHome();
         startEvents(smarthome);
     }
 
-    private static void startEvents(SmartHome smartHome) {
-        SensorEvent sensorEvent = CreateRandomEvent.getNextSensorEvent();
+    private static void startEvents(SmartHome smartHome)  throws IOException {
+        EventGenerator randomEvent = new CreateRandomEvent();
+        SensorEvent sensorEvent = randomEvent.getNextSensorEvent();
         Collection<EventProcessor> eventProcessorCollection = createEventProcessors();
         while (sensorEvent != null) {
             System.out.println("Got event: " + sensorEvent);
             for (EventProcessor eventProcess : eventProcessorCollection) {
                 eventProcess.processEvent(smartHome, sensorEvent);
             }
-            sensorEvent = CreateRandomEvent.getNextSensorEvent();
+            sensorEvent = randomEvent.getNextSensorEvent();
         }
     }
     private static Collection<EventProcessor> createEventProcessors() {
         Collection<EventProcessor> eventProcessorCollection = new ArrayList<>();
-        eventProcessorCollection.add(new LightsEvent());
-        eventProcessorCollection.add(new DoorEvent());
+        eventProcessorCollection.add(new LightsEventProcessor());
+        eventProcessorCollection.add(new DoorEventProcessor());
         eventProcessorCollection.add(new MainDoorEvent());
         return eventProcessorCollection;
     }
