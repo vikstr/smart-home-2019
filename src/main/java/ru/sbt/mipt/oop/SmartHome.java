@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+public class SmartHome implements Actionable{
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -22,13 +22,8 @@ public class SmartHome {
     public Collection<Room> getRooms() {
         return rooms;
     }
-    public void turnOffLight() throws IOException {
-        for (Room homeRoom : getRooms()) {
-            for (Light light : homeRoom.getLights()) {
-                light.setOn(false);
-                SensorCommand command = new CommanderSmartHome();
-                command.giveCommand(CommandType.LIGHT_OFF, light.getId());
-            }
-        }
+    @Override
+    public void executeAction(Action action){
+        rooms.forEach(c -> c.executeAction(action));
     }
 }

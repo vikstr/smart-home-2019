@@ -1,6 +1,6 @@
 package ru.sbt.mipt.oop;
 
-public class Light {
+public class Light implements Actionable{
     private boolean isOn;
     private final String id;
 
@@ -26,5 +26,19 @@ public class Light {
 
     public void printTurnOffLight(String objectName) {
         System.out.println("Light " + getId() + " in room " + objectName + " was turned off.");
+    }
+    public void setState(String objectId,boolean on) {
+        if (objectId.equals(id)){
+            setOn(on);
+            if (on) {
+                printTurnOnLight(" ");
+            } else {
+                printTurnOffLight(" ");
+            }
+        }
+    }
+    @Override
+    public void executeAction(Action action){
+        action.execute(this);
     }
 }
