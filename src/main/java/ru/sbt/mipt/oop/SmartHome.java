@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable{
+    private AlarmSignal alarmSignal;
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -25,5 +26,14 @@ public class SmartHome implements Actionable{
     @Override
     public void executeAction(Action action){
         rooms.forEach(c -> c.executeAction(action));
+    }
+    public AlarmSignal getAlarmSignal() {
+        return alarmSignal;
+    }
+    public void alarmActivate(String password) {
+        this.alarmSignal.activate(password);
+    }
+    public void alarmBun(String password) {
+        this.alarmSignal.deactivate(password);
     }
 }

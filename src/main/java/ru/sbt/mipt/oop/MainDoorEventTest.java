@@ -18,11 +18,11 @@ class MainDoorEventTest {
         for (Room room : smartHome.getRooms()) {
             if (room.getName().equals("hall")) {
                 for (Door door : room.getDoors()) {
-                    door.setState(door.getId(), true);
+                    door.setStateOpen(door.getId(), true);
                 }
             }
             for (Light light : room.getLights()) {
-                light.setState(light.getId(), true);
+                light.setStateOn(light.getId(), true);
             }
         }
     }

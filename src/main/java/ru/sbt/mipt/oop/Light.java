@@ -27,14 +27,16 @@ public class Light implements Actionable{
     public void printTurnOffLight(String objectName) {
         System.out.println("Light " + getId() + " in room " + objectName + " was turned off.");
     }
-    public void setState(String objectId,boolean on) {
+    public void setStateOn(String objectId,boolean on) {
         if (objectId.equals(id)){
             setOn(on);
-            if (on) {
-                printTurnOnLight(" ");
-            } else {
-                printTurnOffLight(" ");
-            }
+            printTurnOnLight(" ");
+        }
+    }
+    public void setStateOff(String objectId,boolean on) {
+        if (objectId.equals(id)){
+            setOn(on);
+            printTurnOffLight(" ");
         }
     }
     @Override

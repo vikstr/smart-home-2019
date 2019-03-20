@@ -28,8 +28,8 @@ class LightsEventProcessorTest {
     void setUp() throws IOException {
         for (Room room : smartHome.getRooms()) {
             for (Light light : room.getLights()) {
-                light.setState(id1, false);
-                light.setState(id2, true);
+                light.setStateOn(id1, false);
+                light.setStateOff(id2, true);
             }
         }
     }
