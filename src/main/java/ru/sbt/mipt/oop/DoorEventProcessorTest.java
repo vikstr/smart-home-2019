@@ -28,8 +28,8 @@ class DoorEventProcessorTest {
     void setUp() throws IOException {
         for (Room room : smartHome.getRooms()) {
             for (Door door : room.getDoors()) {
-                door.setStateClose(id1, false);
-                door.setStateOpen(id2, true);
+                door.setStateClose(id1);
+                door.setStateOpen(id2);
             }
         }
     }
