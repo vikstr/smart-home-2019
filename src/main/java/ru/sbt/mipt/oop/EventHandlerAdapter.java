@@ -27,3 +27,4 @@ public class EventHandlerAdapter implements EventHandler {
         eventProcessor.processEvent(smartHome,sensorEvent);
     }
 }
+////
