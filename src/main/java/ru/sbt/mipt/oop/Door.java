@@ -19,17 +19,18 @@ public class Door implements Actionable {
     public boolean isOpen() {
         return isOpen;
     }
-    public void setState(String objectId, boolean open) {
+    public void setStateOpen(String objectId) {
         if (objectId.equals(id)) {
-            setOpen(open);
-            if (open) {
-                printOpenedDoor(" ");
-            } else {
-                printClosedDoor(" ");
-            }
+            setOpen(true);
+            printOpenedDoor(" ");
         }
     }
-
+    public void setStateClose(String objectId) {
+        if (objectId.equals(id)) {
+            setOpen(false);
+            printClosedDoor(" ");
+        }
+    }
     public void printOpenedDoor(String objectName) {
         System.out.println("Door " + getId() + " in room " + objectName + " was opened.");
     }
