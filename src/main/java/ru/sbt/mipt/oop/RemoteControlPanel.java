@@ -1,25 +1,25 @@
 package ru.sbt.mipt.oop;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
-public class RemoteControlExecuter implements RemoteControl {
-    public Map<String, Command> buttonCodeCommandMap = new HashMap<>();
-    private String rciD;
-    private final CommandHistory commandHistory;
-    public RemoteController(String RCiD, CommandHistory commandHistory) {
-        this.RCiD = RCiD;
-        this.commandHistory = commandHistory;
+public class RemoteControlPanel implements RemoteControl {
+    private Map<String, Command> buttonMap;
+
+    public RemoteControlPanel() {
+        this.buttonMap = new HashMap<>();
     }
 
-    public void linkButtonAndCommand (String buttonCode, Command command) {
-        buttonCodeCommandMap.put(buttonCode,command);
+    public void setCommand (String buttonCode, Command command) {
+        buttonMap.put(buttonCode,command);
     }
 
     @Override
-    public void onButtonPressed(String buttonCode) {
-        if (buttonCodeCommandMap.containsKey(buttonCode))
+    public void onButtonPressed(String buttonCode,String rcID) throws IOException {
+        if (buttonMap.containsKey(buttonCode))
         {
-            buttonCodeCommandMap.get(buttonCode).execute();
+            buttonMap.get(buttonCode).execute(rcID);
         }
     }
 }

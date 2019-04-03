@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class SmartHome implements Actionable{
-    private AlarmSignal alarmSignal;
+    public AlarmSignal alarmSignal;
     Collection<Room> rooms;
 
     public SmartHome() {
@@ -19,7 +19,9 @@ public class SmartHome implements Actionable{
     public void addRoom(Room room) {
         rooms.add(room);
     }
-
+    public void setAlarmSignal(AlarmSignal signal){
+        this.alarmSignal = signal;
+    }
     public Collection<Room> getRooms() {
         return rooms;
     }
