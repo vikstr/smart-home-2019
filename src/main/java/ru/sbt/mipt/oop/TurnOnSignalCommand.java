@@ -6,7 +6,7 @@ public class TurnOnSignalCommand implements Command {
         this.alarm = alarm;
     }
     @Override
-    public void execute(String password){
+    public void execute(){
         alarm.setAlarm();
     }
 }

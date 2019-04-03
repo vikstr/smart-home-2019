@@ -16,10 +16,10 @@ public class RemoteControlPanel implements RemoteControl {
     }
 
     @Override
-    public void onButtonPressed(String buttonCode,String rcID) throws IOException {
+    public void onButtonPressed(String buttonCode) throws IOException {
         if (buttonMap.containsKey(buttonCode))
         {
-            buttonMap.get(buttonCode).execute(rcID);
+            buttonMap.get(buttonCode).execute();
         }
     }
 }

@@ -4,13 +4,19 @@ import java.io.IOException;
 
 public class TurnOffHallLightCommand implements Command {
     SmartHome smartHome;
-    EventProcessor processor = new LightsEventProcessor();
     TurnOffHallLightCommand(SmartHome home){
         this.smartHome=home;
     }
     @Override
-    public void execute(String rcID) throws IOException {
-        SensorEvent event = new SensorEvent(SensorEventType.LIGHT_OFF, "HallLight");
-        processor.processEvent(smartHome,event);
+    public void execute() throws IOException {
+        for (Room room: smartHome.getRooms()) {
+            for (Light light: room.getLights()) {
+                if(light.getId().equals("HallLight")){
+                    light.setStateOff("HallLight");
+                }
+            }
+
+        }
+
     }
 }

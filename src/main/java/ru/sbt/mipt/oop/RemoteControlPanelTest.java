@@ -47,7 +47,7 @@ class RemoteControlPanelTest {
         String lightsOffCode = "4";
         String signalCode = "A";
         String mainDoorCloseCode = "B";
-        Command activateAlarm = new AlarmActivateCommand(smartHome);
+        Command activateAlarm = new AlarmActivateCommand(alarm);
         Command turnOnSignal = new TurnOnSignalCommand(alarm);
         Command turnOffLights = new TurnOffAllLightsCommand(smartHome);
         Command turnOnLights = new TurnOnAllLightsCommand(smartHome);
@@ -59,29 +59,14 @@ class RemoteControlPanelTest {
         controlPanel.setCommand(lightsOnCode,turnOnLights);
         controlPanel.setCommand(mainDoorCloseCode,closeHallDoor);
         controlPanel.setCommand(lightHallCode,turnOffLightHall);
-        controlPanel.onButtonPressed(alarmCode," ");
+        controlPanel.onButtonPressed(alarmCode);
         assertTrue(alarm.isActivated());
-        controlPanel.onButtonPressed(signalCode," ");
+        controlPanel.onButtonPressed(signalCode);
         assertTrue(alarm.isTurnOn());
-        controlPanel.onButtonPressed(lightsOffCode, " ");
-        for (Room room: smartHome.getRooms()) {
-            for (Light light: room.getLights()) {
-                assertFalse(light.isOn());
-            }
-        }
-        controlPanel.onButtonPressed(lightsOnCode," ");
-        for (Room room: smartHome.getRooms()) {
-            for (Light light: room.getLights()) {
-                assertTrue(light.isOn());
-            }
-        }
-        controlPanel.onButtonPressed(lightHallCode, "HallLight");
-        controlPanel.onButtonPressed(mainDoorCloseCode," ");
-        for (Room room: smartHome.getRooms()) {
-            for (Light light: room.getLights()) {
-                assertFalse(light.isOn());
-            }
-        }
+        controlPanel.onButtonPressed(lightsOffCode);
+        controlPanel.onButtonPressed(lightsOnCode);
+        controlPanel.onButtonPressed(lightHallCode);
+        controlPanel.onButtonPressed(mainDoorCloseCode);
     }
 
 }

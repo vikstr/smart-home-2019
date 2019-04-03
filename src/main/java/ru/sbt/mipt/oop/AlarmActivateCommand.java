@@ -3,14 +3,12 @@ package ru.sbt.mipt.oop;
 import java.io.IOException;
 
 public class AlarmActivateCommand implements Command {
-    SmartHome smartHome;
-    EventProcessor processor = new AlarmEventProcessor();
-    AlarmActivateCommand(SmartHome home){
-        this.smartHome=home;
+    AlarmActivate alarm;
+    AlarmActivateCommand(AlarmActivate alarm){
+        this.alarm = alarm;
     }
     @Override
-    public void execute(String rcID) throws IOException {
-        SensorEvent event = new SensorEvent(SensorEventType.ALARM_ACTIVATE, rcID);
-        processor.processEvent(smartHome,event);
+    public void execute() throws IOException {
+       alarm.activate("PasswordByDefault");
     }
 }
