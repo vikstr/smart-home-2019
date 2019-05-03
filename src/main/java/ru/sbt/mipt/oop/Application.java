@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import static ru.sbt.mipt.oop.SensorEventType.*;
-
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Application {
 
     public static void main(String... args) throws IOException {
