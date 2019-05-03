@@ -1,7 +1,8 @@
 package ru.sbt.mipt.oop;
 
 import com.google.gson.Gson;
-
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,15 +12,15 @@ import java.util.Collection;
 import static ru.sbt.mipt.oop.SensorEventType.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Application {
 
+    private static final Logger logger = LogManager.getLogger(Application.class);
     public static void main(String... args) throws IOException {
-
-        LoaderSmartHome initSmartHome = new GsonSmartHomeLoader();
-
-        SmartHome smarthome = initSmartHome.loadSmartHome();
+        logger.info("Starting configuration");
+        ApplicationContext context = new AnnotationConfigApplicationContext(ConfigSpring.class);
+        //LoaderSmartHome initSmartHome = new GsonSmartHomeLoader();
+        LoaderSmartHome smartHomeLoader = context.getBean(LoaderSmartHome.class);
+        SmartHome smarthome = smartHomeLoader.loadSmartHome();
         startEvents(smarthome);
     }
 
